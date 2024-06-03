@@ -1,0 +1,21 @@
+{
+  "name": "serverless-nodejs-api",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "serverless offline",
+    "deploy": "serverless deploy --stage prod --region ap-southeast-2",
+    "remove": "serverless remove --stage prod --region ap-southeast-2"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.9.3",
+    "drizzle-orm": "^0.31.0",
+    "express": "^4.19.2",
+    "serverless-http": "^3.2.0"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.22.1",
+    "serverless-dotenv-plugin": "^6.0.0",
+    "serverless-offline": "^13.6.0"
+  }
+}
