@@ -30,6 +30,10 @@ app.get('/users', async (req, res) => {
     }
 });
 
+app.get('/male', async (req, res) => {
+    res.send("all males");
+})
+
 app.get("/", (req, res) => {
     res.send("Welcome to RoomToRent");
 })
