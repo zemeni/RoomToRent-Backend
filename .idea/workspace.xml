@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="011cffce-fc99-4a81-b7c5-c0b89ef34b14" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.env.dev" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.prod" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/npm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverless.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +60,7 @@
       <option name="presentableId" value="Default" />
       <updated>1717499803521</updated>
       <workItem from="1717499804541" duration="9748000" />
-      <workItem from="1717759915264" duration="2529000" />
+      <workItem from="1717759915264" duration="2632000" />
     </task>
     <servers />
   </component>
