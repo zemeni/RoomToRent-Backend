@@ -1,15 +1,9 @@
 // db.js
-
-require('dotenv').config(); // Load environment variables from .env fil
-
+// db.js
 const { Pool } = require('pg');
 
 const pool = new Pool({
-    user: 'room-to-rent_owner',
-    host: 'ep-sparkling-haze-a7hq9c16.ap-southeast-2.aws.neon.tech',
-    database: 'room-to-rent',
-    password: process.env.DB_PASSWORD.replace(/['"]+/g, ''),
-    port: 5432, // Default PostgreSQL port
+    connectionString: "postgresql://room-to-rent_owner:0smSrBG7HgOA@ep-sparkling-haze-a7hq9c16.ap-southeast-2.aws.neon.tech/room-to-rent?sslmode=require",
     ssl: {
         rejectUnauthorized: false // Disables SSL certificate validation (for self-signed certificates)
     }
@@ -20,3 +14,4 @@ module.exports = {
         return pool.query(text, params, callback);
     },
 };
+
