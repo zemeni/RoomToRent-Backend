@@ -8,7 +8,7 @@ app.get("/", (req, res) => {
     res.send("Welcome to RoomToRent");
 })
 
-app.use('/accounts', accountRouter);
+app.use('/users', accountRouter);
 
 const port = 3000;
 app.listen(port, () => {

@@ -4,7 +4,7 @@ const db = require('../db');
 
 
 //GET all accounts
-router().get("/users", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
     try {
         const {rows} = await db.query('SELECT * from accounts');
         res.json(rows);
