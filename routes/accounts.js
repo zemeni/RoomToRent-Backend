@@ -7,6 +7,7 @@ const db = require('../db');
 router.get("/", async (req, res, next) => {
     try {
         const {rows} = await db.query('SELECT * from accounts');
+        console.log(rows);
         res.json(rows);
     } catch (error) {
         console.error('Error fetching accounts:', error);
