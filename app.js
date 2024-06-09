@@ -1,5 +1,5 @@
 const express = require('express');
-const roomRoutes = require('./routes/roomRoutes');
+const roomRoutes = require('./src/routes/roomRoutes');
 
 const app = express();
 const port = 3000;
