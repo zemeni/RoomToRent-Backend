@@ -1,4 +1,3 @@
-
 CREATE TABLE users(
     UserId SERIAL PRIMARY KEY,
     FirstName VARCHAR(50),
@@ -12,6 +11,13 @@ CREATE TABLE userType(
     UserTypeId SERIAL PRIMARY KEY,
     UserType VARCHAR(15) -- OWNER, RENTER
 );
+
+CREATE TABLE propertyTypes(
+                              PropertyTypeId SERIAL PRIMARY KEY ,
+                              TypeName VARCHAR(50) NOT NULL
+);
+
+INSERT INTO propertyTypes (TypeName) VALUES ('House'), ('Townhouse'), ('Apartment');
 
 CREATE TABLE properties(
   PropertyId SERIAL PRIMARY KEY,
@@ -27,8 +33,8 @@ CREATE TABLE properties(
 
 CREATE TABLE rooms(
   RoomId SERIAL PRIMARY KEY,
-  PropertyId INT REFERENCES properties(PropertyId),
-  RoomNumber INTEGER,
+--   PropertyId INT REFERENCES properties(PropertyId),
+--   RoomNumber INTEGER,
   Furnished BOOLEAN,
   RoomTypeId INT REFERENCES room_type(RoomTypeId),
   Price DECIMAL(10,2),
