@@ -1,17 +1,15 @@
 // db.js
-// db.js
 const { Pool } = require('pg');
 
 const pool = new Pool({
-    connectionString: "postgresql://room-to-rent_owner:0smSrBG7HgOA@ep-sparkling-haze-a7hq9c16.ap-southeast-2.aws.neon.tech/room-to-rent?sslmode=require",
-    ssl: {
-        rejectUnauthorized: false // Disables SSL certificate validation (for self-signed certificates)
-    }
+    user: 'postgres',
+    host: 'localhost',
+    database: 'room_to_rent',
+    password: 'admin',
+    port: 5432, // Default PostgreSQL port
+    ssl: false
 });
 
-module.exports = {
-    query: (text, params, callback) => {
-        return pool.query(text, params, callback);
-    },
-};
+module.exports = pool;
+
 
