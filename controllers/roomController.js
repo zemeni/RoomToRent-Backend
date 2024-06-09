@@ -24,7 +24,19 @@ const getRoomById = async (req, res) => {
     }
 };
 
+const createProperty = async (req, res) => {
+    try {
+        console.log("request body", req.body);
+        const property = await  roomService.createProperty(req.body);
+        res.status(201).json(property);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+}
+
 module.exports = {
     getAllRooms,
     getRoomById,
+    createProperty
 };

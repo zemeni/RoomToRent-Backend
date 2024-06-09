@@ -5,8 +5,7 @@ CREATE TABLE users(
     LastName VARCHAR(50),
     Email VARCHAR(100) UNIQUE NOT NULL,
     Password VARCHAR(255) NOT NULL,
-    Phone VARCHAR(15),
-    UserTypeId INT REFERENCES user_type(UserTypeId)
+    Phone VARCHAR(15)
 );
 
 CREATE TABLE userType(
