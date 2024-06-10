@@ -3,10 +3,10 @@ const pool = require('../config/db');
 
 const createUser = async (userData) => {
     try {
-        const { firstname, lastname, email, password, phone } = userData;
+        const { firstName, lastName, email, password, phone } = userData;
         const query = {
-            text: `INSERT INTO users (firstname, lastname, email, password, phone) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
-            values: [firstname, lastname, email, password, phone]
+            text: `INSERT INTO users (userId,firstName, lastName, email, password, phone) VALUES (10, $1, $2, $3, $4, $5) RETURNING *`,
+            values: [firstName, lastName, email, password, phone]
         };
         const result = await pool.query(query);
         return result.rows[0];
@@ -15,11 +15,11 @@ const createUser = async (userData) => {
     }
 };
 
-const getUserByEmailAndPassword = async (email, password) => {
+const getUserByEmail = async (email) => {
     try {
         const query = {
-            text: 'SELECT * FROM users WHERE email = $1 AND password = $2',
-            values: [email, password]
+            text: 'SELECT * FROM users WHERE email = $1',
+            values: [email]
         };
         const result = await pool.query(query);
         return result.rows[0];
@@ -30,5 +30,5 @@ const getUserByEmailAndPassword = async (email, password) => {
 
 module.exports = {
     createUser,
-    getUserByEmailAndPassword,
+    getUserByEmail,
 };

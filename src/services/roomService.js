@@ -10,7 +10,7 @@ const getRoomById = async (id) =>  {
     return await roomRepository.getRoomById(id);
 }
 
-const createProperty  = async (propertyData) => {
+const addRoom  = async (propertyData) => {
     try {
         const property = new Property(
             propertyData.ownerid,
@@ -22,6 +22,7 @@ const createProperty  = async (propertyData) => {
             propertyData.availablefrom,
             propertyData.availableto
         );
+        //TODO::Add Room and getID
         console.log("property is ", property)
         return await roomRepository.createProperty(property);
     } catch (err) {
@@ -32,6 +33,6 @@ const createProperty  = async (propertyData) => {
 module.exports = {
     getAllRooms,
     getRoomById,
-    createProperty
+
 };
 

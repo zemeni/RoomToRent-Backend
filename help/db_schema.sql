@@ -1,10 +1,11 @@
-CREATE TABLE users(
-    UserId SERIAL PRIMARY KEY,
+CREATE TABLE users
+(
+    UserId    SERIAL PRIMARY KEY,
     FirstName VARCHAR(50),
-    LastName VARCHAR(50),
-    Email VARCHAR(100) UNIQUE NOT NULL,
-    Password VARCHAR(255) NOT NULL,
-    Phone VARCHAR(15)
+    LastName  VARCHAR(50),
+    Email     VARCHAR(100) UNIQUE NOT NULL,
+    Password  VARCHAR(255)        NOT NULL,
+    Phone     VARCHAR(15)
 );
 
 CREATE TABLE userType(

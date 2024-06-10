@@ -24,7 +24,7 @@ const getRoomById = async (req, res) => {
     }
 };
 
-const createProperty = async (req, res) => {
+const addRoom = async (req, res) => {
     try {
         console.log("request body", req.body);
         const property = await  roomService.createProperty(req.body);
@@ -38,5 +38,4 @@ const createProperty = async (req, res) => {
 module.exports = {
     getAllRooms,
     getRoomById,
-    createProperty
 };

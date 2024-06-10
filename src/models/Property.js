@@ -1,14 +1,16 @@
-// models/Property.js
 class Property {
-    constructor(ownerId, description, numberOfRooms, numberOfBathrooms, numberOfParkings, price, availableFrom, availableTo) {
-        this.ownerid = ownerId;
+    constructor(ownerId, addressId, propertyTypeId, description, numberOfRooms, numberOfBathroom, numberOfParking, price, pricePeriod, availableFrom, availableTo) {
+        this.ownerId = ownerId;
+        this.addressId = addressId;
+        this.propertyTypeId = propertyTypeId;
         this.description = description;
-        this.numberofrooms = numberOfRooms;
-        this.numberofbathroom = numberOfBathrooms;
-        this.numberofparking = numberOfParkings;
+        this.numberOfRooms = numberOfRooms;
+        this.numberOfBathroom = numberOfBathroom;
+        this.numberOfParking = numberOfParking;
         this.price = price;
-        this.availablefrom = availableFrom;
-        this.availableto = availableTo;
+        this.pricePeriod = pricePeriod;
+        this.availableFrom = availableFrom;
+        this.availableTo = availableTo;
     }
 }
 
