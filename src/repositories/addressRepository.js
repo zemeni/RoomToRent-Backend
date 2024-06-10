@@ -30,7 +30,7 @@ const insertAddress = async (fullAddress, parsedAddress) => {
 
 const geocodeAddress = async address => {
     console.log("inside geocodeAddress ", address);
-    const apiKey = 'AIzaSyDt1cbLbJKdOoDdYFR-YTeJjBObbekgwjE';
+    const apiKey = 'IDNIDIDOHODJGJ';
     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
 
     try {

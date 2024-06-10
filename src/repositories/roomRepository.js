@@ -15,7 +15,7 @@ const getRoomById = async (roomId) => {
     return result.rows[0];
 };
 
-const createProperty = async (property) => {
+const addRoom = async (property) => {
     try {
         const { ownerid, description, numberofrooms, numberofbathroom, numberofparking, price, availablefrom, availableto } = property;
         const query = {

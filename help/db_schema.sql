@@ -39,15 +39,18 @@ CREATE TABLE properties(
 );
 
 CREATE TABLE rooms(
-  RoomId SERIAL PRIMARY KEY,
---   PropertyId INT REFERENCES properties(PropertyId),
---   RoomNumber INTEGER,
-  Furnished BOOLEAN,
-  RoomTypeId INT REFERENCES room_type(RoomTypeId),
-  Price DECIMAL(10,2),
-  AvailableFrom DATE,
-  AvailableTo DATE,
-  Description TEXT
+    RoomId SERIAL PRIMARY KEY,
+    PropertyId INT REFERENCES properties(PropertyId),
+    OwnerId INT REFERENCES users(userid),
+    AddressId INT REFERENCES address(addressid),
+    RoomNumber INTEGER,
+    Furnished BOOLEAN,
+    RoomTypeId INT REFERENCES roomType(RoomTypeId),
+    Price DECIMAL(10,2),
+    PricePeriod VARCHAR(50),
+    AvailableFrom DATE,
+    AvailableTo DATE,
+    Description TEXT
 );
 
 CREATE TABLE  roomType(

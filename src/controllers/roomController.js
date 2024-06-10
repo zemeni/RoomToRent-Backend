@@ -27,7 +27,7 @@ const getRoomById = async (req, res) => {
 const addRoom = async (req, res) => {
     try {
         console.log("request body", req.body);
-        const property = await  roomService.createProperty(req.body);
+        const property = await  roomService.addRoom(req.body);
         res.status(201).json(property);
     } catch (err) {
         console.error(err.message);
