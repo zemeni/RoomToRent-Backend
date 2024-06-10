@@ -26,7 +26,6 @@ const getRoomById = async (req, res) => {
 
 const addRoom = async (req, res) => {
     try {
-        console.log("request body", req.body);
         const property = await  roomService.addRoom(req.body);
         res.status(201).json(property);
     } catch (err) {
@@ -38,4 +37,5 @@ const addRoom = async (req, res) => {
 module.exports = {
     getAllRooms,
     getRoomById,
+    addRoom
 };
