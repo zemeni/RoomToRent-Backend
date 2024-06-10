@@ -1,5 +1,4 @@
-CREATE TABLE users
-(
+CREATE TABLE users(
     UserId    SERIAL PRIMARY KEY,
     FirstName VARCHAR(50),
     LastName  VARCHAR(50),
@@ -7,6 +6,8 @@ CREATE TABLE users
     Password  VARCHAR(255)        NOT NULL,
     Phone     VARCHAR(15)
 );
+
+insert into users (firstname, lastname, email, password, phone) VALUES ('a','b','ddddd','p','0uu');
 
 CREATE TABLE userType(
     UserTypeId SERIAL PRIMARY KEY,

@@ -39,7 +39,16 @@ const login = async ({email, password}) => {
     return { token };
 };
 
+const profile = async ({email}) => {
+    const user = await userRepository.getUserProfile(email);
+    if (!user) {
+        throw new Error(`User doesn't exist`);
+    }
+    return user;
+};
+
 module.exports = {
     signUp,
     login,
+    profile
 };

@@ -28,7 +28,21 @@ const getUserByEmail = async (email) => {
     }
 };
 
+const getUserProfile = async (email) => {
+    try {
+        const query = {
+            text: 'SELECT firstname, lastname, phone FROM users WHERE email = $1',
+            values: [email]
+        };
+        const result = await pool.query(query);
+        return result.rows[0];
+    } catch (err) {
+        throw err;
+    }
+};
+
 module.exports = {
     createUser,
     getUserByEmail,
+    getUserProfile
 };

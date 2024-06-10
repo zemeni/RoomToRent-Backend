@@ -8,14 +8,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/help/db_schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/help/db_schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/roomController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/roomController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/userController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Property.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Property.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/repositories/userRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/userRepository.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/roomRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/roomRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/roomService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/roomService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/userRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/userRoutes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/userService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/userService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +85,7 @@
       <workItem from="1717759915264" duration="16395000" />
       <workItem from="1717896716234" duration="12159000" />
       <workItem from="1717940942432" duration="1000" />
-      <workItem from="1717940955632" duration="9210000" />
+      <workItem from="1717940955632" duration="11303000" />
     </task>
     <servers />
   </component>
