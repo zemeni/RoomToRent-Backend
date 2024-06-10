@@ -5,7 +5,7 @@ const userRepository = require('../repositories/userRepository');
 const SECRET_KEY = process.env.JWT_SECRET || 'abcd1234'; // Use a strong secret key and store it securely
 
 const signUp = async (userData) => {
-    const { firstName, lastName, email, password, phone } = userData;
+    const { firstname, lastname, email, password, phone } = userData;
 
     // Check if user already exists
     const existingUser = await userRepository.getUserByEmail(email);
@@ -17,17 +17,15 @@ const signUp = async (userData) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Save user
-    const newUser = await userRepository.createUser({ firstName, lastName, email, password: hashedPassword, phone });
+    const newUser = await userRepository.createUser({ firstname, lastname, email, password: hashedPassword, phone });
     return newUser;
 };
 
 const login = async ({email, password}) => {
-    console.log("email, password", email, password);
     const user = await userRepository.getUserByEmail(email);
     if (!user) {
         throw new Error('Invalid credentials');
     }
-    console.log("user is ", user);
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
@@ -36,7 +34,9 @@ const login = async ({email, password}) => {
 
     // Generate JWT
     const token = jwt.sign({ userId: user.userid, email: user.email }, SECRET_KEY, { expiresIn: '1h' });
-    return { token };
+
+    const userProfile = await userRepository.getUserProfile(user.email);
+    return { token, userProfile };
 };
 
 const profile = async ({email}) => {

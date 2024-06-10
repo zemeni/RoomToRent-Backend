@@ -2,23 +2,25 @@
 const pool = require('../config/db');
 
 const createUser = async (userData) => {
+    console.log("creating user::", userData);
     try {
-        const { firstName, lastName, email, password, phone } = userData;
+        const {firstname, lastname, email, password, phone} = userData;
         const query = {
-            text: `INSERT INTO users (userId,firstName, lastName, email, password, phone) VALUES (10, $1, $2, $3, $4, $5) RETURNING *`,
-            values: [firstName, lastName, email, password, phone]
+            text: `INSERT INTO users (firstname, lastname, email, password, phone)
+                   VALUES ($1, $2, $3, $4, $5) RETURNING *`,
+            values: [firstname, lastname, email, password, phone]
         };
-        const result = await pool.query(query);
-        return result.rows[0];
+        await pool.query(query);
+        return {success: true, message: "User created successfully"};
     } catch (err) {
-        throw err;
+        return {success: false, message: err.message};
     }
 };
 
 const getUserByEmail = async (email) => {
     try {
         const query = {
-            text: 'SELECT * FROM users WHERE email = $1',
+            text: 'SELECT * FROM users WHERE email = $1 AND active = true',
             values: [email]
         };
         const result = await pool.query(query);
@@ -31,7 +33,7 @@ const getUserByEmail = async (email) => {
 const getUserProfile = async (email) => {
     try {
         const query = {
-            text: 'SELECT firstname, lastname, phone FROM users WHERE email = $1',
+            text: 'SELECT firstname, lastname, email, phone FROM users WHERE email = $1',
             values: [email]
         };
         const result = await pool.query(query);

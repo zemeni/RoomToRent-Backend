@@ -1,18 +1,36 @@
-const db = require('../config/db');
-// const Property = require('../models/propertyModel');
+const pool = require('../config/db');
 
-async function addProperty(propertyData) {
-    const { ownerId, addressId, propertyTypeId, description, numberOfRooms, numberOfBathrooms, numberOfParking, price, pricePeriod, availableFrom, availableTo } = propertyData;
+const addProperty = async propertyData => {
+    const {
+        ownerid,
+        propertytypeid,
+        addressid,
+        description,
+        numberofrooms,
+        numberofbathroom,
+        numberofparking,
+        price,
+        priceperiod,
+        availablefrom,
+        availableto
+    } = propertyData;
 
-    const result = await db.query(
-        `INSERT INTO properties 
-        (OwnerId, AddressId, PropertyTypeId, Description, NumberOfRooms, NumberOfBathrooms, NumberOfParking, Price, PricePeriod, AvailableFrom, AvailableTo) 
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *`,
-        [ownerId, addressId, propertyTypeId, description, numberOfRooms, numberOfBathrooms, numberOfParking, price, pricePeriod, availableFrom, availableTo]
-    );
+    try {
+        const query = {
+            text: `INSERT INTO properties (ownerid, propertytypeid, addressid, description, numberofrooms,
+                                           numberofbathroom,
+                                           numberofparking, price, priceperiod, availablefrom, availableto)
+                   VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *`,
+            values: [ownerid, propertytypeid, addressid, description, numberofrooms, numberofbathroom, numberofparking, price, priceperiod, availablefrom, availableto]
+        };
 
-    return result.rows[0];
-}
+        await pool.query(query);
+        return {success: true, message: "property added successfully"};
+    } catch (err) {
+        return {success: false, message: err.message};
+    }
+};
+
 
 module.exports = {
     addProperty,

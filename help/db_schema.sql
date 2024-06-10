@@ -4,8 +4,10 @@ CREATE TABLE users(
     LastName  VARCHAR(50),
     Email     VARCHAR(100) UNIQUE NOT NULL,
     Password  VARCHAR(255)        NOT NULL,
+    active    BOOLEAN DEFAULT TRUE,
     Phone     VARCHAR(15)
 );
+
 
 insert into users (firstname, lastname, email, password, phone) VALUES ('a','b','ddddd','p','0uu');
 
@@ -24,11 +26,14 @@ INSERT INTO propertyTypes (TypeName) VALUES ('House'), ('Townhouse'), ('Apartmen
 CREATE TABLE properties(
   PropertyId SERIAL PRIMARY KEY,
   OwnerId INT REFERENCES users(UserId),
+  PropertyTypeId INT REFERENCES propertyTypes(propertytypeid),
+  AddressId INT REFERENCES address(addressid),
   Description TEXT,
   NumberOfRooms INT,
   NumberOfBathroom INT,
   NumberOfParking INT,
   Price DECIMAL(10,2),
+  PricePeriod VARCHAR(50),
   AvailableFrom DATE,
   AvailableTo DATE
 );
@@ -96,6 +101,18 @@ CREATE TABLE address(
   Postcode VARCHAR(4) NOT NULL ,
   COUNTRY VARCHAR(50) NOT NULL
 );
+
+CREATE TABLE address(
+                        AddressId SERIAL PRIMARY KEY,
+                        FullAddress VARCHAR(255) NOT NULL,
+                        Suburb VARCHAR(100) NOT NULL ,
+                        State VARCHAR(3) NOT NULL ,
+                        Postcode INTEGER NOT NULL ,
+                        Country VARCHAR(50) NOT NULL
+);
+
+alter table address
+alter column postcode type int;
 
 insert into  address (propertyid, unit_number, street_address, address_line_2, suburb, state, postcode, country) values
                       (1, 12, 'seccafien avenue','', 'marion', 'SA', '5047', 'Australia');
