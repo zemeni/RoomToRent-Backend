@@ -11,11 +11,6 @@ CREATE TABLE users(
 
 insert into users (firstname, lastname, email, password, phone) VALUES ('a','b','ddddd','p','0uu');
 
-CREATE TABLE userType(
-    UserTypeId SERIAL PRIMARY KEY,
-    UserType VARCHAR(15) -- OWNER, RENTER
-);
-
 CREATE TABLE propertyTypes(
                               PropertyTypeId SERIAL PRIMARY KEY ,
                               TypeName VARCHAR(50) NOT NULL
@@ -58,16 +53,6 @@ CREATE TABLE  roomType(
   RoomType VARCHAR(15) -- SINGLE, DOUBLE
 );
 
-insert into room_type values (1, 'SINGLE');
-insert into room_type values (2, 'DOUBLE');
-
-select * from room_type;
-
-insert into user_type values (1, 'OWNER');
-insert into user_type values (2, 'RENTER');
-
-select * from user_type;
-
 insert into users values (1, 'Baburam', 'Neupane', 'neupanebabu828@gmail.com', 'abc123', '0452445***',1);
 insert into users values (2, 'Subodh', 'Tiwari', 'subodh.tiwari@gmail.com', 'abc123', '0452445***',1);
 insert into users values (3, 'Gaurav', 'Neupane', 'gaurav.neupane@gmail.com', 'abc123', '0452445***',2);
@@ -93,17 +78,6 @@ insert into rooms(propertyid, roomnumber, furnished, roomtypeid, price, availabl
 insert into rooms(propertyid, roomnumber, furnished, roomtypeid, price, availablefrom, availableto, description) values
                   (2, 2, true, 1, 320, '2024-05-24', '2029-05-09', 'furnished single room available in marion');
 
-CREATE TABLE address(
-  AddressId SERIAL PRIMARY KEY,
-  PropertyId INT REFERENCES properties(propertyid),
-  Unit_Number VARCHAR(10) NOT NULL ,
-  Street_Address VARCHAR(255) NOT NULL ,
-  Address_Line_2 VARCHAR(255),
-  Suburb VARCHAR(100) NOT NULL ,
-  State VARCHAR(3) NOT NULL ,
-  Postcode VARCHAR(4) NOT NULL ,
-  COUNTRY VARCHAR(50) NOT NULL
-);
 
 CREATE TABLE address(
                         AddressId SERIAL PRIMARY KEY,
@@ -116,13 +90,5 @@ CREATE TABLE address(
 
 alter table address
 alter column postcode type int;
-
-insert into  address (propertyid, unit_number, street_address, address_line_2, suburb, state, postcode, country) values
-                      (1, 12, 'seccafien avenue','', 'marion', 'SA', '5047', 'Australia');
-
-insert into  address (propertyid, unit_number, street_address, address_line_2, suburb, state, postcode, country) values
-                      (2, 17, 'glamis avenue','', 'marion', 'SA', '5012', 'Australia');
-insert into  address (propertyid, unit_number, street_address, address_line_2, suburb, state, postcode, country) values
-                      (3, '1/214', 'seccafien avenue','', 'marion', 'SA', '5047', 'Australia');
 
 select * from address;
