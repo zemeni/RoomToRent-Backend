@@ -41,5 +41,4 @@ const addRoom = async (property) => {
 module.exports = {
     getAllRooms,
     getRoomById,
-    createProperty
 };

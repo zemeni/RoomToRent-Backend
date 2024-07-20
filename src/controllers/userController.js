@@ -1,6 +1,7 @@
 const userService = require('../services/userService');
 
 const signup = async (req, res) => {
+    console.log("signup request in backend is ", req.body);
     try {
         const user = await userService.signUp(req.body);
         res.status(201).json(user);
@@ -21,6 +22,7 @@ const login = async (req, res) => {
 };
 
 const profile = async (req, res) => {
+    console.log("data received in backend ", req.body);
     try {
         const user = await userService.profile(req.body);
         res.status(200).json(user);

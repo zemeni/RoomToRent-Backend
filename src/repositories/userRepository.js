@@ -4,11 +4,11 @@ const pool = require('../config/db');
 const createUser = async (userData) => {
     console.log("creating user::", userData);
     try {
-        const {firstname, lastname, email, password, phone} = userData;
+        const {firstname, lastname, email, password, phone, state} = userData;
         const query = {
-            text: `INSERT INTO users (firstname, lastname, email, password, phone)
-                   VALUES ($1, $2, $3, $4, $5) RETURNING *`,
-            values: [firstname, lastname, email, password, phone]
+            text: `INSERT INTO users (firstname, lastname, email, password, phone, state)
+                   VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
+            values: [firstname, lastname, email, password, phone, state]
         };
         await pool.query(query);
         return {success: true, message: "User created successfully"};

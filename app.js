@@ -1,23 +1,23 @@
 const express = require('express');
 const app = express();
 
-const port = 3000;
+const port = 4000;
 
 const propertyRoutes = require('./src/routes/propertyRoutes');
 const roomRoutes = require('./src/routes/roomRoutes');
-const authRoutes = require('./src/routes/authRoutes');
+// const authRoutes = require('./src/routes/authRoutes');
 const userRoutes = require('./src/routes/userRoutes');
 
 
 app.use(express.json());
 
-app.use('/api', authRoutes);
+// app.use('/api', authRoutes);
 app.use('/api', propertyRoutes);
 app.use('/api', roomRoutes);
 app.use('/api', userRoutes);
 
 app.get("/hello", (req, res) => {
-    res.send("hello world!");
+    res.json({ message: 'Hello, world!' });
 })
 
 // Start the server
