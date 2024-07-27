@@ -9,7 +9,6 @@ const roomRoutes = require("./src/routes/roomRoutes");
 const userRoutes = require("./src/routes/userRoutes");
 
 app.use(express.json());
-
 app.use("/api", propertyRoutes);
 app.use("/api", roomRoutes);
 app.use("/api", userRoutes);
