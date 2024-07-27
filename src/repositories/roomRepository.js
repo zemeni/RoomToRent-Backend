@@ -15,40 +15,38 @@ const getRoomById = async (roomId) => {
   return result.rows[0];
 };
 
-const addRoom = async (property) => {
-  try {
-    const {
-      ownerid,
-      description,
-      numberofrooms,
-      numberofbathroom,
-      numberofparking,
-      price,
-      availablefrom,
-      availableto,
-    } = property;
-    const query = {
-      text: `INSERT INTO properties (ownerid, description, numberofrooms, numberofbathroom, numberofparking, price, availablefrom, availableto) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
-      values: [
-        ownerid,
-        description,
-        numberofrooms,
-        numberofbathroom,
-        numberofparking,
-        price,
-        availablefrom,
-        availableto,
-      ],
-    };
-    const result = await pool.query(query);
-    return result.rows[0];
-  } catch (err) {
-    throw err;
-  }
+const addRoom = async (room) => {
+    console.log()
+    try {
+        const { address, price, including, roomType, furnished, description, bathrooms, parkings, startDate, images, userId, id } = room;
+        const query = {
+            text: `INSERT INTO rooms (address, price, including, roomtype, furnished, description, bathrooms, parkings, startdate, images, userid, roomnumber) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *`,
+            values: [
+                address,
+                price,
+                including,
+                roomType,
+                furnished,
+                description,
+                bathrooms,
+                parkings,
+                startDate,
+                images,
+                userId,
+                id
+            ]
+        };
+        const result = await pool.query(query);
+        // console.log("result is ", result);
+        // return result.rows[0];
+        return  {success: true, message:"room added successfully"};
+    } catch (err) {
+        throw err;
+    }
 };
 
 module.exports = {
-  getAllRooms,
-  getRoomById,
-  addRoom,
+    getAllRooms,
+    getRoomById,
+    addRoom
 };

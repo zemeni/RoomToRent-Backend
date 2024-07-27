@@ -26,8 +26,10 @@ const getRoomById = async (req, res) => {
 
 const addRoom = async (req, res) => {
     try {
-        const property = await  roomService.addRoom(req.body);
-        res.status(201).json(property);
+        const userId = req.user.userId;
+        const roomsWithUserId = req.body.map(room => ({...room, userId}))
+        const result = await  roomService.addRoom(roomsWithUserId);
+        res.status(201).json(result);
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
