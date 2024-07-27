@@ -5,7 +5,8 @@ CREATE TABLE users(
     Email     VARCHAR(100) UNIQUE NOT NULL,
     Password  VARCHAR(255)        NOT NULL,
     active    BOOLEAN DEFAULT TRUE,
-    Phone     VARCHAR(15)
+    Phone     VARCHAR(15),
+    state VARCHAR(100)
 );
 
 
