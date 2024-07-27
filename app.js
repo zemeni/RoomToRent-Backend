@@ -5,7 +5,6 @@ const port = 4000;
 
 const propertyRoutes = require('./src/routes/propertyRoutes');
 const roomRoutes = require('./src/routes/roomRoutes');
-// const authRoutes = require('./src/routes/authRoutes');
 const userRoutes = require('./src/routes/userRoutes');
 
 

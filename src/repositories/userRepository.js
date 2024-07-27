@@ -33,7 +33,7 @@ const getUserByEmail = async (email) => {
 const getUserProfile = async (email) => {
     try {
         const query = {
-            text: 'SELECT firstname, lastname, email, phone FROM users WHERE email = $1',
+            text: 'SELECT firstname, lastname, email, phone, state FROM users WHERE email = $1',
             values: [email]
         };
         const result = await pool.query(query);

@@ -22,6 +22,7 @@ const signUp = async (userData) => {
 };
 
 const login = async ({email, password}) => {
+    console.log("attempting login in backend ", email, password);
     const user = await userRepository.getUserByEmail(email);
     if (!user) {
         throw new Error('Invalid credentials');
