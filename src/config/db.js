@@ -5,18 +5,9 @@ const pool = new Pool({
   user: "postgres",
   host: "localhost",
   database: "room_to_rent",
-  password: "Sub1995",
+  password: "admin",
   port: 5432, // Default PostgreSQL port
   ssl: false,
 });
-const checkDBConnection = async () => {
-  try {
-    const client = await pool.connect();
-    console.log("Successfully connected to database");
-    client.release();
-  } catch (e) {
-    console.error(e);
-  }
-};
 
-module.exports = { pool, checkDBConnection };
+module.exports = pool;

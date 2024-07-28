@@ -15,7 +15,7 @@ app.use("/api", userRoutes);
 app.get("/hello", (req, res) => {
   res.send("hello world!");
 });
-checkDBConnection();
+// checkDBConnection();
 
 // Start the server
 app.listen(port, () => {

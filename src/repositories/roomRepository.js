@@ -15,12 +15,26 @@ const getRoomById = async (roomId) => {
   return result.rows[0];
 };
 
+const getRoomsAtAddress = async (address) => {
+    try {
+        const query = {
+            text: 'SELECT COUNT(*) FROM rooms WHERE address = $1',
+            values: [address]
+        };
+        const result = await pool.query(query);
+        const count = parseInt(result.rows[0].count, 10);
+        return count;
+    } catch (err) {
+        throw err;
+    }
+};
+
 const addRoom = async (room) => {
     console.log()
     try {
-        const { address, price, including, roomType, furnished, description, bathrooms, parkings, startDate, images, userId, id } = room;
+        const { address, price, including, roomType, furnished, description, bathrooms, parkings, startDate, images, userId, id , latitude, longitude} = room;
         const query = {
-            text: `INSERT INTO rooms (address, price, including, roomtype, furnished, description, bathrooms, parkings, startdate, images, userid, roomnumber) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *`,
+            text: `INSERT INTO rooms (address, price, including, roomtype, furnished, description, bathrooms, parkings, startdate, images, userid, roomnumber, latitude, longitude) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *`,
             values: [
                 address,
                 price,
@@ -33,7 +47,9 @@ const addRoom = async (room) => {
                 startDate,
                 images,
                 userId,
-                id
+                id,
+                latitude,
+                longitude
             ]
         };
         const result = await pool.query(query);
@@ -48,5 +64,6 @@ const addRoom = async (room) => {
 module.exports = {
     getAllRooms,
     getRoomById,
-    addRoom
+    addRoom,
+    getRoomsAtAddress
 };
