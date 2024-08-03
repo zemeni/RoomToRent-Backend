@@ -1,11 +1,12 @@
 // db.js
+require("dotenv").config();
 const { Pool } = require("pg");
 
 const pool = new Pool({
   user: "postgres",
   host: "localhost",
   database: "room_to_rent",
-  password: "admin",
+  password: process.env.DB_PASS || "admin",
   port: 5432, // Default PostgreSQL port
   ssl: false,
 });
