@@ -6,6 +6,11 @@ const getAllRooms = async () => {
   return result.rows;
 };
 
+const getAllMarkerRooms = async () => {
+    const result = await pool.query("SELECT id, price, latitude, longitude from rooms");
+    return result.rows;
+}
+
 const getRoomById = async (roomId) => {
   const query = {
     text: "SELECT * FROM rooms WHERE id = $1",
@@ -32,10 +37,11 @@ const getRoomsAtAddress = async (address) => {
 const addRoom = async (room) => {
     console.log()
     try {
-        const { address, price, including, roomType, furnished, description, bathrooms, parkings, startDate, images, userId, id , latitude, longitude} = room;
+        const { gender, address, price, including, roomType, furnished, description, bathrooms, parkings, startDate, endDate, phone1, phone2, images, userId, id , latitude, longitude} = room;
         const query = {
-            text: `INSERT INTO rooms (address, price, including, roomtype, furnished, description, bathrooms, parkings, startdate, images, userid, roomnumber, latitude, longitude) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *`,
+            text: `INSERT INTO rooms (gender, address, price, including, roomtype, furnished, description, bathrooms, parkings, startdate, enddate, phone1, phone2, images, userid, roomnumber, latitude, longitude) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18) RETURNING *`,
             values: [
+                gender,
                 address,
                 price,
                 including,
@@ -45,6 +51,9 @@ const addRoom = async (room) => {
                 bathrooms,
                 parkings,
                 startDate,
+                endDate,
+                phone1,
+                phone2,
                 images,
                 userId,
                 id,
@@ -65,5 +74,6 @@ module.exports = {
     getAllRooms,
     getRoomById,
     addRoom,
-    getRoomsAtAddress
+    getRoomsAtAddress,
+    getAllMarkerRooms
 };

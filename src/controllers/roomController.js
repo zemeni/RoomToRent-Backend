@@ -12,6 +12,7 @@ const getAllRooms = async (req, res) => {
 };
 
 const getRoomById = async (req, res) => {
+    console.log("getting room by id ", req.params.id);
     try {
         const room = await roomService.getRoomById(req.params.id);
         if (!room) {
