@@ -1,18 +1,7 @@
-const propertyRepository = require('../repositories/propertyRepository');
-const addressRepository = require('../repositories/addressRepository');
-
-const addProperty = async (propertyData) => {
-    try {
-        const {address, propertyDetails} = propertyData;
-        const addressId = await addressRepository.addAddress(address);
-        propertyDetails.addressid = addressId;
-        return await propertyRepository.addProperty(propertyDetails);
-    } catch (err) {
-        return {success: false, message: err.message};
+class PropertyService {
+    async add(property) {
+        throw new Error('Method not implemented');
     }
 }
 
-module.exports = {
-    addProperty,
-};
-
+module.exports = PropertyService;

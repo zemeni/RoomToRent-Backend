@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="011cffce-fc99-4a81-b7c5-c0b89ef34b14" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/roomController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/roomController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/userController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/propertyController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/propertyController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/repositories/roomRepository.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/roomRepository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/propertyRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/propertyRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/propertyService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/propertyService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/roomService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/roomService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/util/geocodeConverter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/geocodeConverter.js" afterDir="false" />
     </list>
@@ -38,27 +39,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/babu/ReactNative/RoomToRent/src/repositories&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/snap/webstorm/387/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/babu/ReactNative/RoomToRent/src/services",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "/snap/webstorm/387/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/services" />
+      <recent name="$PROJECT_DIR$/src/controllers" />
       <recent name="$PROJECT_DIR$/src/repositories" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -98,7 +101,8 @@
       <workItem from="1722249030077" duration="7143000" />
       <workItem from="1722744548306" duration="5611000" />
       <workItem from="1722761477688" duration="2724000" />
-      <workItem from="1722768416853" duration="6928000" />
+      <workItem from="1722768416853" duration="7806000" />
+      <workItem from="1722858251926" duration="8096000" />
     </task>
     <servers />
   </component>

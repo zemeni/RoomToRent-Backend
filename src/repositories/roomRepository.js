@@ -35,7 +35,7 @@ const getRoomsAtAddress = async (address) => {
 };
 
 const addRoom = async (room) => {
-    console.log()
+    console.log("inserting this room ", room);
     try {
         const { gender, address, price, including, roomType, furnished, description, bathrooms, parkings, startDate, endDate, phone1, phone2, images, userId, id , latitude, longitude} = room;
         const query = {
