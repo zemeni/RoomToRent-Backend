@@ -52,5 +52,7 @@ CREATE TABLE rooms (
                        longitude DOUBLE PRECISION,
                        gender VARCHAR(20),
                        phone1 VARCHAR(20),
-                       phone2 VARCHAR(20)
+                       phone2 VARCHAR(20),
+                       state VARCHAR(20),
+                       postcode VARCHAR(20)
 );

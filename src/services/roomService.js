@@ -1,5 +1,5 @@
 const roomRepository = require('../repositories/roomRepository');
-const {getCoordinatesFromAddress, adjustCoordinatesForProperty} = require("../util/geocodeConverter");
+const {getCoordinatesFromAddress, adjustCoordinatesForProperty, getPlaceDetails} = require("../util/geocodeConverter");
 
 const getAllRooms = async () => {
     return await roomRepository.getAllMarkerRooms();
@@ -19,8 +19,10 @@ const addRoom = async (room) => {
             console.log('Failed to get coordinates.');
         }
 
+        const {state, postcode} = await getPlaceDetails(room.address);
+
         if (existingCount === 0) {
-            let roomToAdd = {...room, latitude, longitude};
+            let roomToAdd = {...room, latitude, longitude, state, postcode};
             return await roomRepository.addRoom(roomToAdd);
         } else {
             let adjustedRoom = await adjustCoordinatesForProperty(room, latitude, longitude, existingCount);

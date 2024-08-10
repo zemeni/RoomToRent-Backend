@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const getCoordinatesFromAddress = async (address) => {
-    const apiKey = '';
+    const apiKey = 'AIzaSyCUD4zx3oDyTCAISXtANyF-j8s2ayPHfSs';
     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
 
     try {
@@ -41,7 +41,40 @@ const adjustCoordinatesForProperty = async (property, latitude, longitude, exist
     return property;
 };
 
+
+const getPlaceDetails = async (address) => {
+    const apiKey = '';
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
+
+    try {
+        const response = await axios.get(url);
+        if (response.data.results.length === 0) {
+            throw new Error('No results found for the given address');
+        }
+
+        const addressComponents = response.data.results[0].address_components;
+
+        let state = '';
+        let postcode = '';
+
+        addressComponents.forEach(component => {
+            if (component.types.includes('administrative_area_level_1')) {
+                state = component.long_name;
+            }
+            if (component.types.includes('postal_code')) {
+                postcode = component.long_name;
+            }
+        });
+
+        return { state, postcode };
+    } catch (error) {
+        console.error('Error fetching geocode details:', error);
+        return null;
+    }
+}
+
 module.exports = {
     getCoordinatesFromAddress,
-    adjustCoordinatesForProperty
+    adjustCoordinatesForProperty,
+    getPlaceDetails
 }
