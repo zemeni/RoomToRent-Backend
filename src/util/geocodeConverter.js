@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const getCoordinatesFromAddress = async (address) => {
-    const apiKey = 'AIzaSyCUD4zx3oDyTCAISXtANyF-j8s2ayPHfSs';
+    const apiKey = '';
     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
 
     try {
@@ -46,6 +46,18 @@ const getPlaceDetails = async (address) => {
     const apiKey = '';
     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
 
+    // Mapping of full state names to abbreviations
+    const stateAbbreviations = {
+        'New South Wales': 'NSW',
+        'Victoria': 'VIC',
+        'Queensland': 'QLD',
+        'South Australia': 'SA',
+        'Western Australia': 'WA',
+        'Tasmania': 'TAS',
+        'Northern Territory': 'NT',
+        'Australian Capital Territory': 'ACT'
+    };
+
     try {
         const response = await axios.get(url);
         if (response.data.results.length === 0) {
@@ -59,7 +71,8 @@ const getPlaceDetails = async (address) => {
 
         addressComponents.forEach(component => {
             if (component.types.includes('administrative_area_level_1')) {
-                state = component.long_name;
+                const fullStateName = component.long_name;
+                state = stateAbbreviations[fullStateName] || fullStateName;
             }
             if (component.types.includes('postal_code')) {
                 postcode = component.long_name;

@@ -1,8 +1,8 @@
 const roomRepository = require('../repositories/roomRepository');
 const {getCoordinatesFromAddress, adjustCoordinatesForProperty, getPlaceDetails} = require("../util/geocodeConverter");
 
-const getAllRooms = async () => {
-    return await roomRepository.getAllMarkerRooms();
+const getAllRooms = async (state) => {
+    return await roomRepository.getAllMarkerRooms(state);
 }
 
 const getRoomById = async (id) => {

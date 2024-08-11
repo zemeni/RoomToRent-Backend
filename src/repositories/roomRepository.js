@@ -6,8 +6,9 @@ const getAllRooms = async () => {
   return result.rows;
 };
 
-const getAllMarkerRooms = async () => {
-    const result = await pool.query("SELECT id, price, latitude, longitude from rooms");
+const getAllMarkerRooms = async (state) => {
+    console.log("querying for state", state);
+    const result = await pool.query("SELECT id, price, latitude, longitude from rooms where state=$1", [state]);
     return result.rows;
 }
 

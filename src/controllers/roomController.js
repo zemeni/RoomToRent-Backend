@@ -1,9 +1,10 @@
 const roomService = require('../services/roomService');
 
 const getAllRooms = async (req, res) => {
+    const {state} = req.query;
     console.log("inside room controller")
     try {
-        const rooms = await roomService.getAllRooms();
+        const rooms = await roomService.getAllRooms(state);
         res.status(200).json(rooms);
     } catch (err) {
         console.error(err.message);
