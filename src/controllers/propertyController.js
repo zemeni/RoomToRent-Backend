@@ -1,4 +1,9 @@
-const propertyServiceFactory = require('../services/propertyServiceFactory');
+const PropertyServiceFactory = require('../services/propertyServiceFactory');
+
+const PropertyService = require('../services/propertyService');
+const propertyServiceFactory = new PropertyServiceFactory(); // No arguments needed here
+const propertyService = new PropertyService(propertyServiceFactory); // Pass the factory instance
+
 
 const addProperty = async (req, res) => {
     try {
@@ -7,7 +12,7 @@ const addProperty = async (req, res) => {
 
         const results = [];
         for (const property of propertiesWithUserId) {
-            const service = propertyServiceFactory.getService(property.type);
+            const service = PropertyServiceFactory.getService(property.type);
             const result = await service.add(property);
             results.push(result);
         }
@@ -18,6 +23,34 @@ const addProperty = async (req, res) => {
     }
 };
 
+const getProperties = async (req, res) => {
+    try {
+        const state = req.query.state;  // Assuming state is passed as a query parameter
+        const properties = await propertyService.getProperties(state);
+        res.status(200).json(properties);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+};
+
+const getPropertyById = async (req, res) => {
+    try {
+        const { id } = req.params; // Extracts 'id' from URL parameters
+        const { type } = req.query; // Extracts 'type' from query parameters
+
+        console.log("id and type in backend ", id, type);
+        const property = await propertyService.getPropertyByIdAndType(id, type);
+        console.log("response is ", property);
+        res.status(200).json(property);
+    } catch (err) {
+        console.error('Error fetching property details:', err);
+        res.status(500).send('Server Error');
+    }
+}
+
 module.exports = {
-    addProperty
+    addProperty,
+    getProperties,
+    getPropertyById
 }

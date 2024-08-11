@@ -1,14 +1,13 @@
 // repositories/roomRepository.js
 const pool = require("../config/db");
-const {post} = require("axios");
 
 const getAllUnits = async () => {
   const result = await pool.query("SELECT * FROM units");
   return result.rows;
 };
 
-const getAllMarkerUnits = async () => {
-    const result = await pool.query("SELECT id, price, latitude, longitude from units");
+const getAllMarkerUnits = async (state) => {
+    const result = await pool.query("SELECT id, price, latitude, longitude, 'unit' as type from units where state=$1", [state]);
     return result.rows;
 }
 

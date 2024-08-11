@@ -1,8 +1,8 @@
 const unitRepository = require('../repositories/unitRepository');
 const {getCoordinatesFromAddress, adjustCoordinatesForProperty, getPlaceDetails} = require("../util/geocodeConverter");
 
-const getAllUnits = async () => {
-    return await unitRepository.getAllMarkerUnits();
+const getAllUnits = async (unit) => {
+    return await unitRepository.getAllMarkerUnits(unit);
 }
 
 const getUnitById = async (id) => {

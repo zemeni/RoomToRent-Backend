@@ -1,8 +1,9 @@
 const unitService = require('../services/unitService');
 
 const getAllUnits = async (req, res) => {
+    const {state} = req.query;
     try {
-        const units = await unitService.getAllUnits();
+        const units = await unitService.getAllUnits(state);
         res.status(200).json(units);
     } catch (err) {
         console.error(err.message);
