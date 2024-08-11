@@ -30,7 +30,9 @@ CREATE TABLE units (
                        longitude DOUBLE PRECISION,
                        images TEXT[],
                        userID INTEGER,
-                       unitNumber INTEGER
+                       unitNumber INTEGER,
+                       state VARCHAR(20),
+                       postcode VARCHAR(20)
 );
 
 CREATE TABLE rooms (

@@ -1,5 +1,5 @@
 const unitRepository = require('../repositories/unitRepository');
-const {getCoordinatesFromAddress, adjustCoordinatesForProperty} = require("../util/geocodeConverter");
+const {getCoordinatesFromAddress, adjustCoordinatesForProperty, getPlaceDetails} = require("../util/geocodeConverter");
 
 const getAllUnits = async () => {
     return await unitRepository.getAllMarkerUnits();
@@ -19,13 +19,16 @@ const addUnit = async (unit) => {
             console.log('Failed to get coordinates.');
         }
 
+        const {state, postcode} = await getPlaceDetails(unit.address);
+
         if (existingCount === 0) {
-            let unitToAdd = {...unit, latitude, longitude};
+            let unitToAdd = {...unit, latitude, longitude, state, postcode};
             return await unitRepository.addUnit(unitToAdd);
         } else {
             let adjustedUnit = await adjustCoordinatesForProperty(unit, latitude, longitude, existingCount);
             console.log("adjusted room is ", adjustedUnit);
-            return await unitRepository.addUnit(adjustedUnit);
+            let unitToAdd = {...adjustedUnit, state, postcode};
+            return await unitRepository.addUnit(unitToAdd);
         }
     } catch (err) {
         throw err;

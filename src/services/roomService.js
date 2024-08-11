@@ -27,7 +27,8 @@ const addRoom = async (room) => {
         } else {
             let adjustedRoom = await adjustCoordinatesForProperty(room, latitude, longitude, existingCount);
             console.log("adjusted room is ", adjustedRoom);
-            return await roomRepository.addRoom(adjustedRoom);
+            let roomToAdd = {...adjustedRoom, state, postcode};
+            return await roomRepository.addRoom(roomToAdd);
         }
     } catch (err) {
         throw err;

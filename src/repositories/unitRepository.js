@@ -1,5 +1,6 @@
 // repositories/roomRepository.js
 const pool = require("../config/db");
+const {post} = require("axios");
 
 const getAllUnits = async () => {
   const result = await pool.query("SELECT * FROM units");
@@ -35,11 +36,10 @@ const getUnitsAtAddress = async (address) => {
 };
 
 const addUnit = async (unit) => {
-    console.log()
     try {
-        const {address, price, bondPrice, rooms, description, bathrooms, parkings, startDate, endDate, phone1, phone2, images, userId, id , latitude, longitude} = unit;
+        const {address, price, bondPrice, rooms, description, bathrooms, parkings, startDate, endDate, phone1, phone2, images, userId, id , latitude, longitude, state, postcode} = unit;
         const query = {
-            text: `INSERT INTO units (address, price, bondprice, rooms, description, bathrooms, parkings, startdate, enddate, phone1, phone2, images, userid, unitnumber, latitude, longitude) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING *`,
+            text: `INSERT INTO units (address, price, bondprice, rooms, description, bathrooms, parkings, startdate, enddate, phone1, phone2, images, userid, unitnumber, latitude, longitude, state, postcode) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18) RETURNING *`,
             values: [
                 address,
                 price,
@@ -56,7 +56,9 @@ const addUnit = async (unit) => {
                 userId,
                 id,
                 latitude,
-                longitude
+                longitude,
+                state,
+                postcode
             ]
         };
         const result = await pool.query(query);
