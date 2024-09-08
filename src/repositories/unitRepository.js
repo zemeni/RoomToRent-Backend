@@ -11,13 +11,22 @@ const getAllMarkerUnits = async (state) => {
     return result.rows;
 }
 
-const getUnitById = async (roomId) => {
+const getUnitById = async (unitId) => {
   const query = {
     text: "SELECT * FROM units WHERE id = $1",
-    values: [roomId],
+    values: [unitId],
   };
   const result = await pool.query(query);
   return result.rows[0];
+};
+
+const getUnitByUserId = async (roomId) => {
+    const query = {
+        text: "SELECT * FROM units WHERE userid = $1",
+        values: [roomId],
+    };
+    const result = await pool.query(query);
+    return result.rows;
 };
 
 const getUnitsAtAddress = async (address) => {
@@ -74,5 +83,6 @@ module.exports = {
     getUnitById,
     addUnit,
     getUnitsAtAddress,
-    getAllMarkerUnits
+    getAllMarkerUnits,
+    getUnitByUserId
 };

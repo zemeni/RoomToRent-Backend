@@ -6,7 +6,11 @@ const getAllUnits = async (unit) => {
 }
 
 const getUnitById = async (id) => {
-    return await unitRepository.getUnitById(id);
+    return await  unitRepository.getUnitById(id);
+}
+
+const getUnitByUserId = async (id) => {
+    return await unitRepository.getUnitByUserId(id);
 }
 
 const addUnit = async (unit) => {
@@ -39,6 +43,7 @@ const addUnit = async (unit) => {
 module.exports = {
     getAllUnits,
     getUnitById,
+    getUnitByUserId,
     addUnit
 };
 

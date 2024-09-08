@@ -23,6 +23,11 @@ const addProperty = async (req, res) => {
     }
 };
 
+const updateProperty = async (req, res) => {
+    console.log("update this property ", req.body);
+    res.status(201).json({"success":"true"});
+};
+
 const getProperties = async (req, res) => {
     try {
         const state = req.query.state;  // Assuming state is passed as a query parameter
@@ -49,8 +54,23 @@ const getPropertyById = async (req, res) => {
     }
 }
 
+const getPropertyByUsername = async (req, res) => {
+    try {
+        const { username } = req.params; // Extracts 'type' from query parameters
+        console.log("username is ", username);
+        const property = await propertyService.getPropertyByUsername(username);
+        console.log("response is ", property);
+        res.status(200).json(property);
+    } catch (err) {
+        console.error('Error fetching property details:', err);
+        res.status(500).send('Server Error');
+    }
+}
+
 module.exports = {
     addProperty,
+    updateProperty,
     getProperties,
-    getPropertyById
+    getPropertyById,
+    getPropertyByUsername
 }

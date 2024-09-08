@@ -14,11 +14,20 @@ const getAllMarkerRooms = async (state) => {
 
 const getRoomById = async (roomId) => {
   const query = {
-    text: "SELECT * FROM rooms WHERE id = $1",
+    text: "SELECT *, 'room' as type FROM rooms WHERE id = $1",
     values: [roomId],
   };
   const result = await pool.query(query);
   return result.rows[0];
+};
+
+const getRoomByUserId = async (roomId) => {
+    const query = {
+        text: "SELECT *, 'room' as type FROM rooms WHERE userid = $1",
+        values: [roomId],
+    };
+    const result = await pool.query(query);
+    return result.rows;
 };
 
 const getRoomsAtAddress = async (address) => {
@@ -78,5 +87,6 @@ module.exports = {
     getRoomById,
     addRoom,
     getRoomsAtAddress,
-    getAllMarkerRooms
+    getAllMarkerRooms,
+    getRoomByUserId
 };
