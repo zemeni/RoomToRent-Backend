@@ -6,7 +6,8 @@ CREATE TABLE users(
     Password  VARCHAR(255)        NOT NULL,
     active    BOOLEAN DEFAULT TRUE,
     Phone     VARCHAR(15),
-    state VARCHAR(100)
+    Country   VARCHAR(250) NOT NULL,
+    state     VARCHAR(100) NOT NULL,
 );
 
 

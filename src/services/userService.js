@@ -5,7 +5,7 @@ const userRepository = require('../repositories/userRepository');
 const SECRET_KEY = process.env.JWT_SECRET || 'abcd1234'; // Use a strong secret key and store it securely
 
 const signUp = async (userData) => {
-    const { firstname, lastname, email, password, phone, state } = userData;
+    const { firstname, lastname, email, password, phone, country, state } = userData;
 
     // Check if user already exists
     const existingUser = await userRepository.getUserByEmail(email);
@@ -17,7 +17,7 @@ const signUp = async (userData) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Save user
-    const newUser = await userRepository.createUser({ firstname, lastname, email, password: hashedPassword, phone, state });
+    const newUser = await userRepository.createUser({ firstname, lastname, email, password: hashedPassword, phone, country, state });
     return newUser;
 };
 

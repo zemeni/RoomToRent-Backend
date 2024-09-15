@@ -9,6 +9,9 @@ const getRoomById = async (id) => {
     return await roomRepository.getRoomById(id);
 }
 
+const updateRoomById = async (id, room) => {
+    return await roomRepository.updateRoomById(id, room);
+}
 const getRoomByUserId = async (userid) =>  {
     return await roomRepository.getRoomByUserId(userid);
 }

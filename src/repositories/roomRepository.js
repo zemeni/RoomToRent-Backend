@@ -21,6 +21,69 @@ const getRoomById = async (roomId) => {
   return result.rows[0];
 };
 
+const deleteRoomById = async (id) => {
+    console.log("deleting room id", id);
+    const query = {
+        text: 'DELETE FROM rooms WHERE id = $1 RETURNING *',
+        values: [id],
+    };
+
+    try {
+        const result = await pool.query(query);
+
+        if (result.rowCount === 0) {
+            throw new Error(`Room with id ${id} not found`);
+        }
+
+        return result.rows[0];
+    } catch (error) {
+        console.error('Error deleting room:', error.message);
+        throw error;
+    }
+};
+
+const updateRoomById = async (id, room) => {
+    console.log("updating this room >> ", room);
+    const query = {
+        text: `
+      UPDATE rooms 
+      SET 
+        gender = $1, 
+        price = $2, 
+        "including" = $3,   -- Escaped the reserved keyword "including"
+        roomtype = $4, 
+        furnished = $5, 
+        description = $6, 
+        bathrooms = $7, 
+        parkings = $8, 
+        startdate = $9, 
+        enddate = $10, 
+        phone1 = $11, 
+        phone2 = $12
+      WHERE id = $13
+      RETURNING *;
+    `,
+        values: [
+            room.gender,
+            room.price,
+            room.including,      // Assuming 'including' is a property in roomDetails
+            room.roomtype,
+            room.furnished,
+            room.description,
+            room.bathrooms,
+            room.parkings,
+            room.startdate,
+            room.enddate,        // Make sure the field names match your database
+            room.phone1,
+            room.phone2,
+            id
+        ],
+    };
+
+    const result = await pool.query(query);
+    return result.rows[0];  // Return the updated room details
+};
+
 const getRoomByUserId = async (roomId) => {
     const query = {
         text: "SELECT *, 'room' as type FROM rooms WHERE userid = $1",
@@ -88,5 +151,7 @@ module.exports = {
     addRoom,
     getRoomsAtAddress,
     getAllMarkerRooms,
-    getRoomByUserId
+    getRoomByUserId,
+    updateRoomById,
+    deleteRoomById
 };

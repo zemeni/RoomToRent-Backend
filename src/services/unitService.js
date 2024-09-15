@@ -1,5 +1,6 @@
 const unitRepository = require('../repositories/unitRepository');
 const {getCoordinatesFromAddress, adjustCoordinatesForProperty, getPlaceDetails} = require("../util/geocodeConverter");
+const roomRepository = require("../repositories/roomRepository");
 
 const getAllUnits = async (unit) => {
     return await unitRepository.getAllMarkerUnits(unit);
@@ -39,11 +40,16 @@ const addUnit = async (unit) => {
     }
 }
 
+const updateUnitById = async (id, room) => {
+    return await unitRepository.updateUnitById(id,room);
+}
+
 
 module.exports = {
     getAllUnits,
     getUnitById,
     getUnitByUserId,
-    addUnit
+    addUnit,
+    updateUnitById
 };
 

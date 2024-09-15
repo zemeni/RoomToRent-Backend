@@ -24,9 +24,38 @@ const addProperty = async (req, res) => {
 };
 
 const updateProperty = async (req, res) => {
-    console.log("update this property ", req.body);
-    res.status(201).json({"success":"true"});
+    try {
+        const { id } = req.params;
+        console.log("req.body ", req.body);
+        const type = req.body.type;
+        console.log("get this id and type ", id, type);
+
+        const service = PropertyServiceFactory.getService(type);
+        const result = await service.update(id, req.body);
+        console.log("updated value is ", result);
+
+        res.status(201).json({ success: true, data: result });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ error: 'Server Error' });
+    }
 };
+
+const deleteProperty = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { type } = req.query;
+        console.log("I am deleting the property of id and type ", id, type);
+        const service = PropertyServiceFactory.getService(type);
+        const result = await service.delete(id);
+        res.status(200).json({success: true})
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ error: 'Server Error' });
+    }
+
+}
+
 
 const getProperties = async (req, res) => {
     try {
@@ -72,5 +101,6 @@ module.exports = {
     updateProperty,
     getProperties,
     getPropertyById,
-    getPropertyByUsername
+    getPropertyByUsername,
+    deleteProperty
 }
