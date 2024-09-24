@@ -8,7 +8,7 @@ const getAllRooms = async () => {
 
 const getAllMarkerRooms = async (state) => {
     console.log("querying for state", state);
-    const result = await pool.query("SELECT id, price, latitude, longitude, 'room' as type from rooms where state=$1", [state]);
+    const result = await pool.query("SELECT id, price, latitude, longitude, address, description, 'room' as type from rooms where state=$1", [state]);
     return result.rows;
 }
 
@@ -110,9 +110,9 @@ const getRoomsAtAddress = async (address) => {
 const addRoom = async (room) => {
     console.log("inserting this room ", room);
     try {
-        const { gender, address, price, including, roomType, furnished, description, bathrooms, parkings, startDate, endDate, phone1, phone2, images, userId, id , latitude, longitude, state, postcode} = room;
+        const { gender, address, price, including, roomType, furnished, description, bathrooms, parkings, startDate, endDate, phone1, phone2, userId, id , latitude, longitude, state, postcode} = room;
         const query = {
-            text: `INSERT INTO rooms (gender, address, price, including, roomtype, furnished, description, bathrooms, parkings, startdate, enddate, phone1, phone2, images, userid, roomnumber, latitude, longitude, state, postcode) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20) RETURNING *`,
+            text: `INSERT INTO rooms (gender, address, price, including, roomtype, furnished, description, bathrooms, parkings, startdate, enddate, phone1, phone2, userid, roomnumber, latitude, longitude, state, postcode) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19) RETURNING *`,
             values: [
                 gender,
                 address,
@@ -127,7 +127,6 @@ const addRoom = async (room) => {
                 endDate,
                 phone1,
                 phone2,
-                images,
                 userId,
                 id,
                 latitude,

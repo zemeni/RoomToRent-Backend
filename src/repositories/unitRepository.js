@@ -7,7 +7,7 @@ const getAllUnits = async () => {
 };
 
 const getAllMarkerUnits = async (state) => {
-    const result = await pool.query("SELECT id, price, latitude, longitude, 'unit' as type from units where state=$1", [state]);
+    const result = await pool.query("SELECT id, price, latitude, longitude, address, description, 'unit' as type from units where state=$1", [state]);
     return result.rows;
 }
 
@@ -45,9 +45,9 @@ const getUnitsAtAddress = async (address) => {
 
 const addUnit = async (unit) => {
     try {
-        const {address, price, bondPrice, rooms, description, bathrooms, parkings, startDate, endDate, phone1, phone2, images, userId, id , latitude, longitude, state, postcode} = unit;
+        const {address, price, bondPrice, rooms, description, bathrooms, parkings, startDate, endDate, phone1, phone2, userId, id , latitude, longitude, state, postcode} = unit;
         const query = {
-            text: `INSERT INTO units (address, price, bondprice, rooms, description, bathrooms, parkings, startdate, enddate, phone1, phone2, images, userid, unitnumber, latitude, longitude, state, postcode) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18) RETURNING *`,
+            text: `INSERT INTO units (address, price, bondprice, rooms, description, bathrooms, parkings, startdate, enddate, phone1, phone2, userid, unitnumber, latitude, longitude, state, postcode) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING *`,
             values: [
                 address,
                 price,
@@ -60,7 +60,6 @@ const addUnit = async (unit) => {
                 endDate,
                 phone1,
                 phone2,
-                images,
                 userId,
                 id,
                 latitude,
@@ -106,7 +105,7 @@ const updateUnitById = async (id, unit) => {
       SET 
         rooms = $1, 
         price = $2, 
-        bondprice = $3,   -- Escaped the reserved keyword "including"
+        bondprice = $3, 
         description = $4, 
         bathrooms = $5, 
         parkings = $6, 

@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const getCoordinatesFromAddress = async (address) => {
-    const apiKey = '';
+    const apiKey = 'AIzaSyCUD4zx3oDyTCAISXtANyF-j8s2ayPHfSs';
     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
 
     try {
@@ -43,7 +43,7 @@ const adjustCoordinatesForProperty = async (property, latitude, longitude, exist
 
 
 const getPlaceDetails = async (address) => {
-    const apiKey = '';
+    const apiKey = 'AIzaSyCUD4zx3oDyTCAISXtANyF-j8s2ayPHfSs';
     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
 
     // Mapping of full state names to abbreviations
@@ -66,7 +66,7 @@ const getPlaceDetails = async (address) => {
 
         const addressComponents = response.data.results[0].address_components;
 
-        let state = '';
+        let state = 'AIzaSyCUD4zx3oDyTCAISXtANyF-j8s2ayPHfSs';
         let postcode = '';
 
         addressComponents.forEach(component => {

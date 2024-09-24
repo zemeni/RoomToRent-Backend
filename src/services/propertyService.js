@@ -36,8 +36,6 @@ class PropertyService {
             const rooms = await getRoomByUserId(userid);
             const units = await getUnitByUserId(userid);
 
-            console.log("rooms is ", rooms);
-            console.log("unit is ", units);
             return [...rooms, ...units];
         }catch (err) {
             console.error('Error fetching properties:', err);

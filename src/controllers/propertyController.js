@@ -6,6 +6,7 @@ const propertyService = new PropertyService(propertyServiceFactory); // Pass the
 
 
 const addProperty = async (req, res) => {
+    console.log("adding properties ", req.user.userId);
     try {
         const userId = req.user.userId;
         const propertiesWithUserId = req.body.map(property => ({...property, userId}));
@@ -26,10 +27,8 @@ const addProperty = async (req, res) => {
 const updateProperty = async (req, res) => {
     try {
         const { id } = req.params;
-        console.log("req.body ", req.body);
         const type = req.body.type;
-        console.log("get this id and type ", id, type);
-
+        console.log("updating property of id and type", id, type);
         const service = PropertyServiceFactory.getService(type);
         const result = await service.update(id, req.body);
         console.log("updated value is ", result);
@@ -60,6 +59,7 @@ const deleteProperty = async (req, res) => {
 const getProperties = async (req, res) => {
     try {
         const state = req.query.state;  // Assuming state is passed as a query parameter
+        console.log("getting properties for state ", state);
         const properties = await propertyService.getProperties(state);
         res.status(200).json(properties);
     } catch (err) {
@@ -73,9 +73,7 @@ const getPropertyById = async (req, res) => {
         const { id } = req.params; // Extracts 'id' from URL parameters
         const { type } = req.query; // Extracts 'type' from query parameters
 
-        console.log("id and type in backend ", id, type);
         const property = await propertyService.getPropertyByIdAndType(id, type);
-        console.log("response is ", property);
         res.status(200).json(property);
     } catch (err) {
         console.error('Error fetching property details:', err);
@@ -86,9 +84,7 @@ const getPropertyById = async (req, res) => {
 const getPropertyByUsername = async (req, res) => {
     try {
         const { username } = req.params; // Extracts 'type' from query parameters
-        console.log("username is ", username);
         const property = await propertyService.getPropertyByUsername(username);
-        console.log("response is ", property);
         res.status(200).json(property);
     } catch (err) {
         console.error('Error fetching property details:', err);

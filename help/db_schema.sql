@@ -10,6 +10,51 @@ CREATE TABLE users(
     state     VARCHAR(100) NOT NULL,
 );
 
+CREATE TABLE socials(
+    socialid SERIAL PRIMARY KEY,
+    title VARCHAR(200),
+    imageUrl VARCHAR(250),
+    description VARCHAR(500),
+    facebookLink VARCHAR(200),
+    state VARCHAR(50)
+);
+
+insert into socials(title, imageUrl, description, facebooklink,state)
+values ('Teej Program', 'https://room-to-rent.s3.ap-southeast-2.amazonaws.com/teej.jpeg', 'Please come to celebrate teej!', 'https://www.ipaddressguide.com/cidr', 'NSW');
+
+insert into socials(title, imageUrl, description, facebooklink,state)
+values ('Bhaitiak Program', 'https://room-to-rent.s3.ap-southeast-2.amazonaws.com/teej.jpeg', 'Please come to celebrate bhaitika!', 'https://www.ipaddressguide.com/cidr', 'NSW');
+
+
+CREATE TABLE sports(
+    SportsId SERIAL PRIMARY KEY,
+    title VARCHAR(200),
+    imageUrl VARCHAR(250),
+    description VARCHAR(500),
+    facebookLink VARCHAR(200)
+)
+
+CREATE TABLE latest (
+    latestId SERIAL PRIMARY KEY,
+    description VARCHAR(500),
+    videourl VARCHAR(1000),
+    state VARCHAR(50),
+    type VARCHAR(100),
+    postedon TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+
+alter table sports add column state varchar(50);
+
+insert into sports(title, imageUrl, description, facebooklink)
+values ('Cricket Club', 'https://room-to-rent.s3.ap-southeast-2.amazonaws.com/redrhino.png', 'Please join our local football club and enjoy weekend matches! Join our local football club and enjoy weekend matches!', 'https://www.facebook.com/redrhinoscc');
+
+insert into sports(title, imageUrl, description, facebooklink)
+values ('Football Club', 'https://room-to-rent.s3.ap-southeast-2.amazonaws.com/8848_football', 'Please join our local football club and enjoy weekend matches! Join our local football club and enjoy weekend matches!', 'https://www.facebook.com/8848RoyalsFC');
+
+
+
 
 insert into users (firstname, lastname, email, password, phone) VALUES ('a','b','ddddd','p','0uu');
 

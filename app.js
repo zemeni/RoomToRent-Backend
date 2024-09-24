@@ -8,6 +8,9 @@ const port = 4000;
 const propertyRoutes = require("./src/routes/propertyRoutes");
 const roomRoutes = require("./src/routes/roomRoutes");
 const userRoutes = require("./src/routes/userRoutes");
+const sportsRoutes = require("./src/routes/sportsRoutes");
+const socialRoutes = require("./src/routes/socialRoutes");
+const latestInfoRoutes = require("./src/routes/latestRoutes");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const uploadPath = path.join(__dirname, "upload");
@@ -26,6 +29,10 @@ app.use(express.json());
 app.use("/api", propertyRoutes);
 app.use("/api", roomRoutes);
 app.use("/api", userRoutes);
+app.use("/api", sportsRoutes);
+app.use("/api", socialRoutes);
+app.use("/api", latestInfoRoutes);
+
 app.post("/upload", upload.array("files", 5), (req, res) => {
   try {
     if (!req.files || req.files.length === 0) {
