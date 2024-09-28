@@ -48,7 +48,7 @@ CREATE TABLE latest (
 alter table sports add column state varchar(50);
 
 insert into sports(title, imageUrl, description, facebooklink)
-values ('Cricket Club', 'https://room-to-rent.s3.ap-southeast-2.amazonaws.com/redrhino.png', 'Please join our local football club and enjoy weekend matches! Join our local football club and enjoy weekend matches!', 'https://www.facebook.com/redrhinoscc');
+values ('Cricket Club', 'https://room-to-rent.s3.ap-southeast-2.amazonaws.com/boomerang_cup.jpg', 'Please join our local football club and enjoy weekend matches! Join our local football club and enjoy weekend matches!', 'https://www.facebook.com/redrhinoscc');
 
 insert into sports(title, imageUrl, description, facebooklink)
 values ('Football Club', 'https://room-to-rent.s3.ap-southeast-2.amazonaws.com/8848_football', 'Please join our local football club and enjoy weekend matches! Join our local football club and enjoy weekend matches!', 'https://www.facebook.com/8848RoyalsFC');
