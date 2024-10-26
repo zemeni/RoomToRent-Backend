@@ -1,3 +1,16 @@
+CREATE TABLE countries (
+    country_key VARCHAR(10) PRIMARY KEY,    -- 3-character country code (e.g., 'AUS', 'CAN', 'USA')
+    label VARCHAR(100) NOT NULL         -- Country name (e.g., 'Australia', 'Canada')
+);
+
+CREATE TABLE states (
+    state_key VARCHAR(10) PRIMARY KEY,
+    country_key VARCHAR(10) REFERENCES countries(country_key) ON DELETE CASCADE,
+    label VARCHAR(100) NOT NULL,
+    latitude DECIMAL(8, 5),
+    longitude DECIMAL(8, 5)
+);
+
 CREATE TABLE users(
     UserId    SERIAL PRIMARY KEY,
     FirstName VARCHAR(50),
@@ -6,9 +19,10 @@ CREATE TABLE users(
     Password  VARCHAR(255)        NOT NULL,
     active    BOOLEAN DEFAULT TRUE,
     Phone     VARCHAR(15),
-    Country   VARCHAR(250) NOT NULL,
-    state     VARCHAR(100) NOT NULL,
+    Country   VARCHAR(10) REFERENCES countries(country_key),
+    state     VARCHAR(10) REFERENCES states(state_key)
 );
+curl -X POST http://localhost:4000/api/signup -d '{"firstname":"zon", "lastname":"shrestha", "email":"zon@gmail.com", "password":"admins", "phone":"0452445806", "country":"AUS", "state":"NSW"}' -H 'Content-Type: application/json'
 
 CREATE TABLE socials(
     socialid SERIAL PRIMARY KEY,
@@ -138,5 +152,7 @@ INSERT INTO states (state_key, country_key, label, latitude, longitude) VALUES
 -- Insert states for Canada
 INSERT INTO states (state_key, country_key, label, latitude, longitude) VALUES
     ('ON', 'CAN', 'Ontario', 51.2538, -85.3232),
+
+
 
 
