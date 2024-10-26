@@ -11,6 +11,7 @@ const userRoutes = require("./src/routes/userRoutes");
 const sportsRoutes = require("./src/routes/sportsRoutes");
 const socialRoutes = require("./src/routes/socialRoutes");
 const latestInfoRoutes = require("./src/routes/latestRoutes");
+const countryRoutes = require("./src/routes/countryRoutes");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const uploadPath = path.join(__dirname, "upload");
@@ -32,6 +33,7 @@ app.use("/api", userRoutes);
 app.use("/api", sportsRoutes);
 app.use("/api", socialRoutes);
 app.use("/api", latestInfoRoutes);
+app.use("/api", countryRoutes);
 
 app.post("/upload", upload.array("files", 5), (req, res) => {
   try {

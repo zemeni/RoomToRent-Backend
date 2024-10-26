@@ -104,3 +104,39 @@ CREATE TABLE rooms (
                        state VARCHAR(20),
                        postcode VARCHAR(20)
 );
+
+CREATE TABLE countries (
+    country_key VARCHAR(10) PRIMARY KEY,    -- 3-character country code (e.g., 'AUS', 'CAN', 'USA')
+    label VARCHAR(100) NOT NULL         -- Country name (e.g., 'Australia', 'Canada')
+);
+
+CREATE TABLE states (
+    state_key VARCHAR(10) PRIMARY KEY,      -- 3-character state code (e.g., 'NSW', 'CA')
+    country_key VARCHAR(10) REFERENCES countries(country_key) ON DELETE CASCADE,  -- Foreign key to countries table
+    label VARCHAR(100) NOT NULL,        -- State name (e.g., 'New South Wales', 'California')
+    latitude DECIMAL(8, 5),             -- Latitude coordinate
+    longitude DECIMAL(8, 5)             -- Longitude coordinate
+);
+
+-- Insert countries
+INSERT INTO countries (country_key, label) VALUES
+    ('AUS', 'Australia'),
+    ('CAN', 'Canada'),
+    ('USA', 'United States');
+
+-- Insert states for Australia
+INSERT INTO states (state_key, country_key, label, latitude, longitude) VALUES
+    ('NSW', 'AUS', 'New South Wales', -33.8688, 151.2093),
+    ('VIC', 'AUS', 'Victoria', -37.8136, 144.9631),
+    ('QLD', 'AUS', 'Queensland', -27.4698, 153.0251),
+    ('SA', 'AUS', 'South Australia', -34.9285, 138.6007),
+    ('WA', 'AUS', 'Western Australia', -31.9505, 115.8605),
+    ('TAS', 'AUS', 'Tasmania', -42.8821, 147.3272),
+    ('NT', 'AUS', 'Northern Territory', -12.4634, 130.8456),
+    ('ACT', 'AUS', 'Australian Capital Territory', -35.2809, 149.1300);
+
+-- Insert states for Canada
+INSERT INTO states (state_key, country_key, label, latitude, longitude) VALUES
+    ('ON', 'CAN', 'Ontario', 51.2538, -85.3232),
+
+
